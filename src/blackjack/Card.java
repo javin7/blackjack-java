@@ -1,7 +1,8 @@
 package blackjack;
 
 public class Card {
-
+	
+	
 	private final int rank;
 	private final int suit;
 	private static String[] ranks = { "Joker", "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
