@@ -68,12 +68,10 @@ class Main {
 		        	//Asks if user wants insurance
 		            if (input.choiceIsYes()) {
 		            	moneyManager.insurance();
-		            	moneyManager.addLossMoney(moneyManager.getBet()/2);
 		            	//If dealer does have blackjack
 		                if (dealer.hasBlackJack(1)) {
 		            	    System.out.println("\nThe dealer does have Blackjack, you have won your insurance.");
 		            	    moneyManager.win();
-		            	    moneyManager.addProfitMoney(moneyManager.getBet());
 		            	    System.out.printf("%nCash: $%.2f%n", moneyManager.getCash());
 		                } else { //If dealer does not have blackjack
 		            	    System.out.println("\nThe dealer does not have Blackjack, you have lost your insurance");
@@ -94,16 +92,12 @@ class Main {
 		            System.out.println("You have BlackJack!");
 		    	    System.out.println("You win 3x your money back!");
 		    	    moneyManager.blackJack();
-		    	    moneyManager.addProfitMoney(moneyManager.getBet() * 2);
-		    	    moneyManager.addWin();
 		    	    
 		            
 	            //If dealer has blackjack
 		        } else if (dealer.hasBlackJack(1)) {
 		        	System.out.println("The dealer has Blackjack!");
 		        	System.out.println("You lose your money!");
-		        	moneyManager.addLossMoney(moneyManager.getBet());
-		    	    moneyManager.addLoss();
 		            
 		        } else {
 		        	//Check if user is able to double down
@@ -129,8 +123,6 @@ class Main {
 					    //Check if user busted
 		                if (cardManager.hasBusted()) {
 		                	System.out.println("You busted!");
-		                	moneyManager.addLossMoney(moneyManager.getBet());
-				    	    moneyManager.addLoss();
 		                	break;
 		                }
 		                
@@ -138,8 +130,6 @@ class Main {
 		                if (cardManager.hasFiveCardTrick(1)) {
 		                	System.out.println("You have a five card trick! You have won!");
 		                	moneyManager.win();
-		                	moneyManager.addProfitMoney(moneyManager.getBet());
-				    	    moneyManager.addWin();
 		                    break;
 		                }
 		            }
@@ -156,16 +146,12 @@ class Main {
 		                if (dealer.hasBusted()) {
 		                	System.out.println("The dealer busted! You have won!");
 		                	moneyManager.win();
-		                	moneyManager.addProfitMoney(moneyManager.getBet());
-				    	    moneyManager.addWin();
 		                } else {
 		                	//If you deck value is more than the dealers
 		                    if ((21 - cardManager.getHand(1).getHandValue()) < (21 - dealer.getHand(1).getHandValue())) {
 		                    	System.out.println("Congratulations, you win!");
 		                    	System.out.println("You win 2x your money back!");
 		                    	moneyManager.win();
-		                    	moneyManager.addProfitMoney(moneyManager.getBet());
-					    	    moneyManager.addWin();
 		                    }
 		                  //If you deck value is equal to the dealers
 		                    if ((21 - cardManager.getHand(1).getHandValue()) == (21 - dealer.getHand(1).getHandValue())) {
@@ -176,13 +162,10 @@ class Main {
 		                  //If you deck value is less than the dealers
 		                    if ((21 - cardManager.getHand(1).getHandValue()) > (21 - dealer.getHand(1).getHandValue())) {
 		                    	System.out.println("You lose!");
-		                    	moneyManager.addLossMoney(moneyManager.getBet());
-					    	    moneyManager.addLoss();
 		                    }
 		                }
 		            }
 		        }
-		        
 		        
 		        System.out.printf("Cash: $%.2f%n", moneyManager.getCash());
 		        System.out.println("Would you like to play again?");

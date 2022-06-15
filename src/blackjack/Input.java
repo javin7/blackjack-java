@@ -8,7 +8,7 @@ class Input {
 
 	public double getBet(double cash) {
 	    Scanner n = new Scanner(System.in);
-	    int bet = n.nextInt();
+	    double bet = n.nextDouble();
 	        while (bet > cash) {
 	        	System.out.println("You cannot bet more money than you have!");
 	        	System.out.println("How much do you wish to bet?");
