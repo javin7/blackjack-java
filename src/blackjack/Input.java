@@ -5,7 +5,8 @@ import java.util.*;
 class Input {
 	Input() {
 	}
-
+	
+	//Get bet from user
 	public double getBet(double cash) {
 		Scanner n = new Scanner(System.in);
 		String temp = n.nextLine();
@@ -35,7 +36,7 @@ class Input {
 		return yes.equals("yes");
 	}
 
-	//
+	//Check if answer is hit or stand
 	public boolean choiceIsHit() {
 		Scanner n = new Scanner(System.in);
 		String hit = n.nextLine();
@@ -55,7 +56,8 @@ class Input {
 	public boolean isHitOrStand(String hit) {
 		return (hit.toLowerCase().equals("hit") || hit.toLowerCase().equals("stand"));
 	}
-
+	
+	//Check if number is numeric
 	public boolean isNumber(String str) { 
 		try {  
 			Double.parseDouble(str);  

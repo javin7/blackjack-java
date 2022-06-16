@@ -3,6 +3,7 @@ package blackjack;
 import java.io.*;
 
 class Stats {
+	//Variables
 	String file = "stats.txt";
 	String temp;
 	String[] stats = new String[6];
@@ -12,7 +13,8 @@ class Stats {
 	private double biggestLoss;
 	private double profit;
 	private double loss;
-
+	
+	//Reads over stats from text file into variables
 	public void checkStats() {
 		try {
 			BufferedReader in = new BufferedReader(new FileReader(file));
@@ -35,6 +37,7 @@ class Stats {
 
 	}
 
+	//Write stats into text file
 	public void updateStats() {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(file, false));
