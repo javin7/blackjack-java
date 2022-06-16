@@ -25,9 +25,9 @@ class Main {
 		System.out.printf("Hello %s, let's play some blackjack!%n%n", name);
 		
 		
-		if (stats.getWins() != 0 && stats.getLoses() != 0) {
+		if (stats.getWins() != 0 || stats.getLoses() != 0) {
 			System.out.println("-------------STATISTICS-------------");
-			System.out.printf("Your W/L %% is %.2f%%", stats.winPercentage());
+			System.out.printf("Your W/L %% is %.2f%%%n", stats.winPercentage());
 			if (stats.getProfit() != 0) {
 				System.out.printf("%nYour total profit is $%.2f%n", stats.getProfit());
 			}
@@ -43,7 +43,7 @@ class Main {
 			if (stats.getBiggestLoss() != 0) {
 				System.out.printf("Your biggest loss is $%.2f%n", stats.getBiggestLoss());
 			}
-			System.out.println("------------------------------------");
+			System.out.println("------------------------------------\n");
 		}
 		
 		//How much cash want to put in?
@@ -184,6 +184,7 @@ class Main {
 							System.out.println("You win 2x your money back!");
 							moneyManager.win();
 							stats.addWin(moneyManager.getBet());
+							stats.updateStats();
 						}
 						//If you deck value is equal to the dealers
 						if ((21 - cardManager.getHand(1).getHandValue()) == (21 - dealer.getHand(1).getHandValue())) {
@@ -195,6 +196,7 @@ class Main {
 						if ((21 - cardManager.getHand(1).getHandValue()) > (21 - dealer.getHand(1).getHandValue())) {
 							System.out.println("You lose!");
 							stats.addLoss(moneyManager.getBet());
+							stats.updateStats();
 						}
 					}
 				}
