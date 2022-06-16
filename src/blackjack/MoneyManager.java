@@ -1,7 +1,5 @@
 package blackjack;
 
-import java.util.*;
-
 //Extending card manager :3
 public class MoneyManager extends CardManager{
 	private double cash;
