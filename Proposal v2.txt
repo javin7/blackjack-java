@@ -1,0 +1,22 @@
+We are making the game blackjack.
+You can enter how much money you want to bet
+It randomly chooses cards for user and the dealer
+dealer shows one card, while you can see your 2 cards
+Keeps track of how much money you have and consistantly updates it with every move
+
+Important outcomes/options:
+	blackjack
+	win
+	loss
+	double down
+	insurance
+	5 card trick
+
+Use file i/o and show up all time stats everytime you open the game
+
+We have a arraylist for the hand and we make sure you can't have duplicates because we have a deck that we shuffle 200-300 times
+
+Arrays & multidimensional arrays - We will be using arraylist for the deck and using a 2D array to store profit/loss and win/loss between dealer and player
+
+File I/O - We will be storing the amount of cash that you currently have so you can quit the game and start up another with the saved cash
+	   Track stats in the file (win, loss, biggest win, biggest loss, etc...)
