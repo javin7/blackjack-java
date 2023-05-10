@@ -1,0 +1,316 @@
+June 7 - 
+@First time using eclipse in like a year
+Create classes Card, CardManager, Dealer, User, Deck, Hand, Input, MoneyManager, Main
+
+Card---	
+	Create ranks and suits -> Assign to object attributes
+	Create getter functions -> 	getRank(); //Returns rank
+								getSuit(); //Returns suit
+								getValue(); //Calculate and returns value of card
+											
+Hand---
+	ArrayList<Card> hand;
+	numberOfAces;
+	handValue;
+	Add 2 cards to arraylist hand
+	Create tempHand object as Card
+	Run through cards with for loop
+		Calculate value of hand with tempHand.getValue();
+		Calcualte number of aces
+		
+CardManager---
+	Create new ArrayList<Hand> hand;
+		
+MoneyManager---
+	
+	
+Input---
+
+Deck---
+
+Dealer---
+
+Main---
+
+June 8 - 
+Card---	
+	Create function ->	toString();//returns String "suits[rank] of suits[suit])"
+	Capitalize ranks and suits
+		
+Hand---
+	Create getter functions -> 	getHandSize(); 	//Returns hand.size();
+								getHandValue();	//Returns handValue
+								getCard(int cardnum); //Returns hand.get(cardnum-1);
+								toString(); //Returns the cards you have in your hand
+		
+CardManager---
+	Create checker functions -> hasBusted(int handnum); //Create tempHand obj and checks if value is > 21
+								hasBlackJack(int handnum); //Create tempHand obj and checks if value is == 21 && size == 2
+	Create 	getHand(int handnum); -> returns hand
+			dealHand(Deck deck); -> Clears arraylist and creates new hand
+		
+MoneyManager---
+	
+Input---
+
+Deck---
+
+Dealer---
+
+Main---
+	
+Hand---
+June 9
+
+Card---
+	Remove function -> toString(); //I don't need this
+	Add function -> toString(); //My brain for some reason broke here nvm
+									
+Hand---
+		
+CardManager---
+		
+MoneyManager---
+	
+Input---
+
+Deck---
+	Create a new deck arrayList which adds all the cards in a proper deck;
+	Create a drawCard() function -> returns deck.remove(0);
+
+Dealer---
+
+Main---
+	
+Hand---
+	Create action functions -> 	Hit(); -> Draws card from  deck and check for aces and hand value
+
+June 10
+Card---	
+											
+Hand---
+		
+CardManager---
+	Check for five card trick -> If the hand size is == 5 and hand value < 21 -> You win //Never even heard of this rule
+		
+MoneyManager---
+	
+Input---
+
+Deck---
+	Create shuffle function which switches random cards in deck 200 times
+	Create hit(Deck deck); ->	draw and add a new card to array
+
+Dealer---
+	
+
+Main---
+	
+Hand---
+
+June 11
+Card---	
+											
+Hand---
+		
+CardManager---
+								
+MoneyManager---
+	MoneyManager extends CardManager
+	create vars -> 	private double cash;
+					private double bet;
+					private String name;
+	
+	Create getter methods -> 	getCash(); //Returns cash
+								getBet(); //Returns bet
+								getName(); //Returns name
+	
+Input---
+
+Deck---
+	
+
+Dealer---
+	Dealer extends CardManager
+	Create action methods ->	showFirstCard(); -> Shows dealers first card
+								wantsToHit(); -> dealer will hit if deck value is below 17
+								showHand(); -> prints out hand
+								takeTurn(); -> Make the dealer hit until busted or >17
+
+Main---
+Get name of user
+Welcome user to the game of black jack
+Ask user how much cash they would like to start with
+moneyManager.setCash();
+Create new Deck object -> Deck class -> Array
+deck.shuffle(); //I'll switch around cards 300 times
+cardManager -> dealHand //I'm using card manager to also manage user hand
+dealer -> dealHand
+Print out cash amount
+
+Ask user how much cash they would like to bet
+input.setBet - checks if bet is over cash amount
+moneyManager.setCash to getCash-getBet
+	
+Hand---
+
+June 12
+Card---	
+											
+Hand---
+		
+CardManager---
+
+		
+MoneyManager---
+	
+Input---
+Create input getters ->	getBet(double cash); //Gets bet from user and checks if value is greater than the cash user has
+						
+						choiceIsYes(); //Returns true if entered value is yes
+						isYesOrNo();	//Checks if the input is 'yes' or 'no'
+						
+						choiceIsHit(); //Returns true if entered value is hit
+						isHitOrStand(); //Checks if the input is 'hit' or 'stand'
+
+Deck---
+	
+
+Dealer---
+
+Main---
+	Print out cash amount
+Print out money on table
+
+Print out player hand
+cardManager.getHand();
+Print out dealers first card
+dealer.showFirstCard(); 
+
+Check if dealer is showing ace
+If yes -> Ask for insurance //Uses input class to verify answer
+	-> moneyManager.insurance(); //Takes money away;
+		If dealer has blackjack -> moneyManager.win() -> Update cash in file //You get money back; I dont think I need to make a different method for this
+		If dealer does not have blackjack -> You don't get money back
+	
+Hand---
+
+June 13
+Card---	
+											
+Hand---
+		
+CardManager---
+	Modify check functions -> hasBlackJack(); -> && deckSize = 2 //Added checker for handSize
+		
+MoneyManager---
+	Create setter methods ->	setCash(double money); cash = money;
+								setBet(double money); bet = money;
+								setName(String username); name = username;
+								
+	Create action methods ->	doubleDown(); -> cash -= bet; bet = 2 * bet;
+								win(); -> cash += 2 * bet;
+								blackjack(); -> cash += (3 * bet);
+								push(); -> cash += bet;
+Input---
+Create checker method ->	isNumber() -> Check if number is numeric or not
+
+Deck---
+
+Dealer---
+
+Main---
+Check for blackjacks
+	if cardManager.hasBlackJack(1) && dealer.hasBlackJack(1) -> moneyManager.push(); //It's a push, you get your money back
+	if cardManager.hasBlackJack(1) -> moneyManager.blackJack(); -> Update cash in file //You win 2x your money back
+	if dealer.hasBlackJack(1) -> //You lose, nothing happens because money is already take away from you
+	else check if (2 x bet < cash)
+		-> Ask if they would like to double down (2x bet) -> moneyManager.doubleDown();
+
+
+Ask if user wants to play again
+Check if user is out of cash
+
+If not, print out profit made
+	
+Hand---
+
+
+
+June 14
+Card---	
+											
+Hand---
+		
+CardManager---
+
+		
+MoneyManager---
+	Create action methods ->	insurance(); -> cash -= bet/2;
+	
+Input---
+
+Deck---
+	
+
+Dealer---
+
+Main---
+	
+Hand---
+
+June 15
+Card---	
+											
+Hand---
+		
+CardManager---
+
+		
+MoneyManager---
+	
+Input---
+	Even if user enters string into a number input, it catches it.
+
+Deck---
+
+Dealer---
+
+Main---
+	Changes all input getters to run through input class 
+	Add file io methods
+
+Hand---
+
+Create Stats class 
+
+Stats--
+	checkstats() -> Read stats from file  ->	Stores into variables:
+												wins
+												loses 
+												biggestWin
+												biggestLoss
+												profit
+												loss
+	
+	updateStats() -> Write stats back into file -> 	Vars:
+													wins
+													loses 
+													biggestWin
+													biggestLoss
+													profit
+													loss
+	
+	addWin(double cash) -> Wins++, check biggest win, add to profit
+	addLoss(double cash) -> Loses++, check biggest loss, add to loss
+	increaseProfit(double cash);	profit += cash;
+	increaseLoss(double cash); -> 	loss += cash;
+	
+	Create getter methods ->	getWins(); //Returns win
+								getLoses(); //Returns loses
+								getProfit(); //Returns profit
+								getLoss();	//Returns loss
+								getBiggestWin(); //Returns biggestWin
+								getBiggestLoss(); //Returns biggestLoss
+
+	Create method winPercentage() -> returns (wins / (wins + loses)) * 100; //Returns win percentage
