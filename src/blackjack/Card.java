@@ -1,38 +1,36 @@
 package blackjack;
 
 public class Card {
-	
-	
-	private final int rank;
-	private final int suit;
-	private static String[] ranks = { "Joker", "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
-	private static String[] suits = { "Clubs", "Diamonds", "Hearts", "Spades" };
+	private final int rankValue;
+	private final int suitValue;
+	private static final String[] RANKS = { "Joker", "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
+	private static final String[] SUITS = { "Clubs", "Diamonds", "Hearts", "Spades" };
 
 	Card(int suit, int values) {
-	    this.rank = values;
-	    this.suit = suit;
-	}
-
-	public String toString() {
-	    return ranks[rank] + " of " + suits[suit];
+	    this.rankValue = values;
+	    this.suitValue = suit;
 	}
 
 	public int getRank() {
-	    return rank;
+	    return rankValue;
 	}
 
-	public int getSuit() {
-	    return suit;
+	public int getSuits() {
+	    return suitValue;
+	}
+
+	public String toString() {
+		return RANKS[rankValue] + " of " + SUITS[suitValue];
 	}
 
 	public int getValue() {
 	    int value = 0;
-	    if (rank > 10) {
+	    if (rankValue > 10) {
 	        value = 10;
-	    } else if (rank == 1) {
+	    } else if (rankValue == 1) {
 	        value = 11;
 	    } else {
-	        value = rank;
+	        value = rankValue;
 	    }
 	    return value;
 	}

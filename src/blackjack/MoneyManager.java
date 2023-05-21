@@ -11,20 +11,21 @@ public class MoneyManager extends CardManager{
 
 	//Get methods	
 	public double getCash() {
-	    return cash;
+		return cash;
 	}
 
 	public double getBet() {
-	    return bet;
+		return bet;
 	}	
 
 	public String getName() {
-	    return name;
+		return name;
 	}
 
 	//Set methods
 	public void setCash(double money) {
-	    cash = money;
+
+		cash = money;
 	}
 
 	public void setBet(double money) {

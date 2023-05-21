@@ -1,6 +1,7 @@
 package blackjack;
 
 import java.io.*;
+import java.util.*;
 
 class Stats {
 	//Variables
@@ -17,20 +18,23 @@ class Stats {
 	//Reads over stats from text file into variables
 	public void checkStats() {
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(file));
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			for(int i = 0; i < 6; i++) {
-				stats[i] = in.readLine();
-				if (stats[i] == null) {
+				if (reader.readLine() != "") {
+					writer.write(0);
 					stats[i] = "0";
+				} else {
+					stats[i] = reader.readLine();
 				}
 			}
-			in.close();
 			wins = Integer.parseInt(stats[0]);
 			loses = Integer.parseInt(stats[1]);
 			biggestWin = Double.parseDouble(stats[2]);
 			biggestLoss = Double.parseDouble(stats[3]);
 			profit = Double.parseDouble(stats[4]);
 			loss = Double.parseDouble(stats[5]);
+			reader.close();
 		} catch (IOException e) {
 			System.out.print(e + " : File error");
 		}
