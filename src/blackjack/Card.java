@@ -15,16 +15,12 @@ public class Card {
 	    return rankValue;
 	}
 
-	public int getSuits() {
-	    return suitValue;
-	}
-
 	public String toString() {
 		return RANKS[rankValue] + " of " + SUITS[suitValue];
 	}
 
 	public int getValue() {
-	    int value = 0;
+	    int value;
 	    if (rankValue > 10) {
 	        value = 10;
 	    } else if (rankValue == 1) {

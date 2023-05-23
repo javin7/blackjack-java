@@ -144,7 +144,7 @@ Ask user how much cash they would like to start with
 moneyManager.setCash();
 Create new Deck object -> Deck class -> Array
 deck.shuffle(); //I'll switch around cards 300 times
-cardManager -> dealHand //I'm using card manager to also manage user hand
+player -> dealHand //I'm using card manager to also manage user hand
 dealer -> dealHand
 Print out cash amount
 
@@ -183,7 +183,7 @@ Main---
 Print out money on table
 
 Print out player hand
-cardManager.getHand();
+player.getHand();
 Print out dealers first card
 dealer.showFirstCard(); 
 
@@ -221,8 +221,8 @@ Dealer---
 
 Main---
 Check for blackjacks
-	if cardManager.hasBlackJack(1) && dealer.hasBlackJack(1) -> moneyManager.push(); //It's a push, you get your money back
-	if cardManager.hasBlackJack(1) -> moneyManager.blackJack(); -> Update cash in file //You win 2x your money back
+	if player.hasBlackJack(1) && dealer.hasBlackJack(1) -> moneyManager.push(); //It's a push, you get your money back
+	if player.hasBlackJack(1) -> moneyManager.blackJack(); -> Update cash in file //You win 2x your money back
 	if dealer.hasBlackJack(1) -> //You lose, nothing happens because money is already take away from you
 	else check if (2 x bet < cash)
 		-> Ask if they would like to double down (2x bet) -> moneyManager.doubleDown();

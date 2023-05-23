@@ -1,6 +1,6 @@
 package blackjack;
 
-class Dealer extends CardManager {
+class Dealer extends Player {
 
 Dealer() {
 }
