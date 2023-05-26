@@ -17,10 +17,10 @@ class Player {
 	    return (tempHand[0].getHandValue() > 21);
 	}
 	
-	public boolean hasBlackJack(int handNum) {
+	public boolean hasBlackJack() {
 	    Hand[] tempHand = new Hand[] {};
 	    tempHand = hand.toArray(tempHand);
-	    return (tempHand[handNum-1].getHandSize() == 2 && tempHand[handNum-1].getHandValue() == 21);
+	    return (tempHand[0].getHandSize() == 2 && tempHand[0].getHandValue() == 21);
 	}
 
 	public Hand getHand(int handNum) {

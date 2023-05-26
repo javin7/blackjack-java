@@ -1,6 +1,6 @@
  June 7 - 
 @First time using eclipse in like a year
-Create classes Card, Player, Dealer, User, Deck, Hand, Input, MoneyManager, Main
+Create classes Card, CardManager, Dealer, User, Deck, Hand, Input, MoneyManager, Main
 
 Card---	
 	Create ranks and suits -> Assign to object attributes
@@ -18,7 +18,7 @@ Hand---
 		Calculate value of hand with tempHand.getValue();
 		Calcualte number of aces
 		
-Player---
+CardManager---
 	Create new ArrayList<Hand> hand;
 		
 MoneyManager---
@@ -43,7 +43,7 @@ Hand---
 								getCard(int cardnum); //Returns hand.get(cardnum-1);
 								toString(); //Returns the cards you have in your hand
 		
-Player---
+CardManager---
 	Create checker functions -> hasBusted(int handnum); //Create tempHand obj and checks if value is > 21
 								hasBlackJack(int handnum); //Create tempHand obj and checks if value is == 21 && size == 2
 	Create 	getHand(int handnum); -> returns hand
@@ -68,7 +68,7 @@ Card---
 									
 Hand---
 		
-Player---
+CardManager---
 		
 MoneyManager---
 	
@@ -90,7 +90,7 @@ Card---
 											
 Hand---
 		
-Player---
+CardManager---
 	Check for five card trick -> If the hand size is == 5 and hand value < 21 -> You win //Never even heard of this rule
 		
 MoneyManager---
@@ -131,10 +131,10 @@ Card---
 											
 Hand---
 		
-Player---
+CardManager---
 								
 MoneyManager---
-	MoneyManager extends Player
+	MoneyManager extends CardManager
 	create vars -> 	private double cash;
 					private double bet;
 					private String name;
@@ -149,7 +149,7 @@ Deck---
 	
 
 Dealer---
-	Dealer extends Player
+	Dealer extends CardManager
 	Create action methods ->	showFirstCard(); -> Shows dealers first card
 								wantsToHit(); -> dealer will hit if deck value is below 17
 								showHand(); -> prints out hand
@@ -179,7 +179,7 @@ Card---
 											
 Hand---
 		
-Player---
+CardManager---
 
 		
 MoneyManager---
@@ -228,7 +228,7 @@ Card---
 											
 Hand---
 		
-Player---
+CardManager---
 	Modify check functions -> hasBlackJack(); -> && deckSize = 2 //Added checker for handSize
 		
 MoneyManager---
@@ -270,7 +270,7 @@ Card---
 											
 Hand---
 		
-Player---
+CardManager---
 
 		
 MoneyManager---
@@ -295,7 +295,7 @@ Card---
 											
 Hand---
 		Changed for loop to for-each loop (Card card : tempHand)
-Player---
+CardManager---
 
 		
 MoneyManager---
@@ -324,7 +324,7 @@ Card---
 											
 Hand---
 		
-Player---
+CardManager---
 
 		
 MoneyManager---

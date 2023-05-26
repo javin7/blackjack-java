@@ -19,17 +19,17 @@ class Hand {
 	    
 	    Card[] tempHand = new Card[]{};
 	    tempHand = hand.toArray(tempHand);
-	    for (int i = 0; i < tempHand.length; i++) {
-	    	//Get value of deck
-	        handValue += tempHand[i].getValue();
-	        if (tempHand[i].getValue() == 11) {
-	            aceCounter++;
-	        }
-	        while (aceCounter > 0 && handValue > 21) {
-	            handValue -= 10;
-	            aceCounter--;
-	        }
-	    }
+		for (Card card : tempHand) {
+			//Get value of deck
+			handValue += card.getValue();
+			if (card.getValue() == 11) {
+				aceCounter++;
+			}
+			while (aceCounter > 0 && handValue > 21) {
+				handValue -= 10;
+				aceCounter--;
+			}
+		}
 	}
 	
 /*	public boolean hasBlackJack(int handnum) {

@@ -49,12 +49,12 @@ class Input {
 
 	//Check if answer is valid
 	public boolean isYesOrNo(String answer) {
-		return (answer.toLowerCase().equals("yes") || answer.toLowerCase().equals("no"));
+		return (answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("no"));
 	}
 
 	//Check if answer is valid
 	public boolean isHitOrStand(String hit) {
-		return (hit.toLowerCase().equals("hit") || hit.toLowerCase().equals("stand"));
+		return (hit.equalsIgnoreCase("hit") || hit.equalsIgnoreCase("stand"));
 	}
 	
 	//Check if number is numeric

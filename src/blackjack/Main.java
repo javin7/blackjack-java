@@ -90,7 +90,7 @@ class Main {
 				if (input.choiceIsYes()) {
 					money.insurance();
 					//If dealer does have blackjack
-					if (dealer.hasBlackJack(1)) {
+					if (dealer.hasBlackJack()) {
 						System.out.println("\nThe dealer does have Blackjack, you have won your insurance.");
 						money.win();
 						System.out.printf("%nCash: $%.2f%n", money.getCash());
@@ -105,14 +105,14 @@ class Main {
 			}
 
 			//If both get blackjack
-			if (player.hasBlackJack(1) && dealer.hasBlackJack(1)) {
+			if (player.hasBlackJack() && dealer.hasBlackJack()) {
 				System.out.println("It's a push!");
 				System.out.println("You get your money back.");
 				money.push();
 				stats.updateStats();
 
 				//If user has blackjack
-			} else if (player.hasBlackJack(1)) {
+			} else if (player.hasBlackJack()) {
 				System.out.println("You have BlackJack!");
 				System.out.println("You win 3x your money back!");
 				money.blackJack();
@@ -120,7 +120,7 @@ class Main {
 				stats.increaseProfit(money.getBet());
 
 				//If dealer has blackjack
-			} else if (dealer.hasBlackJack(1)) {
+			} else if (dealer.hasBlackJack()) {
 				System.out.println("The dealer has Blackjack!");
 				System.out.println("You lose your money!");
 				stats.addLoss(money.getBet());

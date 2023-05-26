@@ -1,13 +1,10 @@
 package blackjack;
 
 import java.io.*;
-import java.nio.file.*;
-import java.util.*;
 
 class Stats {
 	//Variables
 	String file = "stats.txt";
-	String temp;
 	String[] stats = new String[6];
 	private int wins;
 	private int loses;
@@ -19,10 +16,10 @@ class Stats {
 	//Reads over stats from text file into variables
 	public void checkStats() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			BufferedReader reader = new BufferedReader(new FileReader(file));
 			for(int i = 0; i < 6; i++) {
-				if (reader.readLine() != "") {
+				if (reader.readLine() == null) {
 					writer.write(0);
 					stats[i] = "0";
 				} else {
@@ -108,7 +105,8 @@ class Stats {
 	}
 
 	public double winPercentage() {
-		double percentage = (wins / (wins + loses)) * 100;
-		return percentage;
+		return (double) (wins / (wins + loses)) * 100;
+		//double percentage = (double) (wins / (wins + loses)) * 100;
+		//return percentage;
 	}
 }
