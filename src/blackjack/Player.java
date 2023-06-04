@@ -23,19 +23,13 @@ class Player {
 	    return (tempHand[0].getHandSize() == 2 && tempHand[0].getHandValue() == 21);
 	}
 
-	public Hand getHand(int handNum) {
+	public Hand getHand() {
 	    Hand[] tempHand = new Hand[] {};
-	    tempHand = hand.toArray(tempHand); //Get 
-	    return tempHand[handNum-1];
+	    tempHand = hand.toArray(tempHand); //Get
+	    return tempHand[0];
 	}
-		
+
 	//If the user has a 5 card trick
-	public boolean hasFiveCardTrick(int handNum) {
-	    Hand[] tempHand = new Hand[]{};
-	    tempHand = hand.toArray(tempHand);
-	    Hand myHand = tempHand[handNum-1];
-	    return(myHand.getHandSize()==5 && myHand.getHandValue()<21);
-	}
 
 	//Create a new hand
 	public void dealHand(Deck deck) {

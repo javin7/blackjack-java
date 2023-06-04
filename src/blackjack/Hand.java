@@ -47,9 +47,7 @@ class Hand {
 	
 	//Hit method
 	public void Hit(Deck deck) {
-		for (int i = 0; i < 2; i++) {
 		    hand.add(deck.drawCard());
-		}
 		
 		for (Card card : hand) {
 		    handValue += card.getValue();

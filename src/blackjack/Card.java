@@ -9,6 +9,7 @@ public class Card {
 	Card(int suit, int values) {
 	    this.rankValue = values;
 	    this.suitValue = suit;
+		//System.out.println("rankValue: " + this.getValue() + " suit" + this.getRank());
 	}
 
 	public int getRank() {

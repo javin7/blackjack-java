@@ -6,35 +6,83 @@ class Stats {
 	//Variables
 	String file = "stats.txt";
 	String[] stats = new String[6];
+	private int playerIndex;
+	private String username;
+	private int level;
 	private int wins;
 	private int loses;
 	private double biggestWin;
 	private double biggestLoss;
 	private double profit;
 	private double loss;
-	
+
+
+
 	//Reads over stats from text file into variables
+	public boolean setPlayerIndex(String username) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			while (true) {
+				String curr;
+				curr = reader.readLine();
+				int index = 0;
+				if (curr == null) {
+					return false;
+				} else if (curr.equals(username)) {
+					playerIndex = index;
+					return true;
+				} else {
+					index++;
+				}
+			}
+		} catch (IOException iox) {
+			System.out.print(iox + "File error");
+		}
+		return false;
+	}
+
+	public void createPlayerProfile(String username) {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+			writer.write(username);
+			writer.write("0");
+			writer.write("0");
+			writer.write("0");
+			writer.write("0");
+			writer.write("0");
+			writer.write("0");
+			writer.write("0");
+		} catch (IOException iox) {
+			System.out.print(iox + "File error");
+		}
+	}
+
 	public void checkStats() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			BufferedReader reader = new BufferedReader(new FileReader(file));
-			for(int i = 0; i < 6; i++) {
+
+			/*for(int i = 0; i < 6; i++) {
 				if (reader.readLine() == null) {
 					writer.write(0);
 					stats[i] = "0";
 				} else {
 					stats[i] = reader.readLine();
 				}
+			}*/
+			for (int i = 0; i < playerIndex; i++) {
+				writer.write("");
 			}
-			wins = Integer.parseInt(stats[0]);
-			loses = Integer.parseInt(stats[1]);
-			biggestWin = Double.parseDouble(stats[2]);
-			biggestLoss = Double.parseDouble(stats[3]);
-			profit = Double.parseDouble(stats[4]);
-			loss = Double.parseDouble(stats[5]);
+			level = Integer.parseInt(stats[playerIndex + 1]);
+			wins = Integer.parseInt(stats[playerIndex + 2]);
+			loses = Integer.parseInt(stats[playerIndex + 3]);
+			biggestWin = Double.parseDouble(stats[playerIndex + 4]);
+			biggestLoss = Double.parseDouble(stats[playerIndex + 5]);
+			profit = Double.parseDouble(stats[playerIndex + 6]);
+			loss = Double.parseDouble(stats[playerIndex + 7]);
 			reader.close();
-		} catch (IOException e) {
-			System.out.print(e + " : File error");
+		} catch (IOException iox) {
+			System.out.print(iox + " : File error");
 		}
 
 	}
@@ -42,16 +90,21 @@ class Stats {
 	//Write stats into text file
 	public void updateStats() {
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(file, false));
-			out.write(wins + "\n");
-			out.write(loses + "\n");
-			out.write(biggestWin + "\n");
-			out.write(biggestLoss + "\n");
-			out.write(profit + "\n");
-			out.write(loss + "\n");
-			out.close();
-		} catch (IOException e) {
-			System.out.print(e + " : File error");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
+			BufferedReader reader = new BufferedReader(new FileReader(file));
+			for (int i = 0; i < playerIndex; i++) {
+				writer.write(reader.readLine());
+			}
+			writer.write(level +"\n");
+			writer.write(wins + "\n");
+			writer.write(loses + "\n");
+			writer.write(biggestWin + "\n");
+			writer.write(biggestLoss + "\n");
+			writer.write(profit + "\n");
+			writer.write(loss + "\n");
+			writer.close();
+		} catch (IOException iox) {
+			System.out.print(iox + " : File error");
 		}
 	}
 

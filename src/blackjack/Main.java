@@ -13,19 +13,21 @@ class Main {
 		//Classes
 		Stats stats = new Stats();
 		Input input = new Input();
-		Player player = new Player();
+		User user = new User();
 		Dealer dealer = new Dealer();
 		Money money = new Money();
 		
 		stats.checkStats();
 
 		//Get name
-		System.out.println("Hi! What is your name?");
+		System.out.println("Hi! What is your username?");
 		String name = n.nextLine();
+		user.setUsername(name);
+		stats.setPlayerIndex(name);
 		System.out.printf("Hello %s, let's play some blackjack!%n%n", name);
 		
 		
-		if (stats.getWins() != 0 || stats.getLoses() != 0) {
+		if (stats.getWins() != 0 ||  stats.getLoses() != 0) {
 			System.out.println("-------------STATISTICS-------------");
 			System.out.printf("Your W/L %% is %.2f%%%n", stats.winPercentage());
 			if (stats.getProfit() != 0) {
@@ -63,7 +65,7 @@ class Main {
 			deck.shuffle();
 
 			//Get new hand for dealer and player
-			player.dealHand(deck);
+			user.dealHand(deck);
 			dealer.dealHand(deck);
 
 			System.out.printf("Cash: $%.2f%n", money.getCash());
@@ -78,12 +80,15 @@ class Main {
 			System.out.printf("Money on the table: $%.2f%n", money.getBet());
 
 			//Show user hand
-			System.out.printf("\nHere is your hand: %s%n%n", player.getHand(1));
+			System.out.printf("\nHere is your hand: %s%n%n", user.getHand());
+			System.out.println(user.getHand().getHandValue());
 
 			dealer.showFirstCard(dealer);
+			//dealer.showHand();
+			//System.out.println(dealer.getHand().getHandValue());
 
 			//Check if dealer has ace
-			if (dealer.getHand(1).getCard(1).getRank() == 1) {
+			if (dealer.getHand().getCard(1).getRank() == 1) {
 				System.out.println("\nThe dealer is showing an ace! Would you like insurance? (Yes/No)");   
 
 				//Asks if user wants insurance
@@ -105,14 +110,14 @@ class Main {
 			}
 
 			//If both get blackjack
-			if (player.hasBlackJack() && dealer.hasBlackJack()) {
+			if (user.hasBlackJack() && dealer.hasBlackJack()) {
 				System.out.println("It's a push!");
 				System.out.println("You get your money back.");
 				money.push();
 				stats.updateStats();
 
 				//If user has blackjack
-			} else if (player.hasBlackJack()) {
+			} else if (user.hasBlackJack()) {
 				System.out.println("You have BlackJack!");
 				System.out.println("You win 3x your money back!");
 				money.blackJack();
@@ -140,14 +145,15 @@ class Main {
 				//Hit or stand
 				System.out.println("Would you like to hit or stand?");
 				while (input.choiceIsHit()) {
-					player.getHand(1).Hit(deck);
+					user.getHand().Hit(deck);
 
 					//Show user hand
 					System.out.println("Here is your hand: ");
-					System.out.println(player.getHand(1));
+					System.out.println(user.getHand());
+
 
 					//Check if user busted
-					if (player.hasBusted()) {
+					if (user.hasBusted()) {
 						System.out.println("You busted!");
 						stats.addLoss(money.getBet());
 						stats.updateStats();
@@ -155,7 +161,7 @@ class Main {
 					}
 
 					//Check if user has a 5 card trick
-					if (player.hasFiveCardTrick(1)) {
+					if (user.hasFiveCardTrick(1)) {
 						System.out.println("You have a five card trick! You have won!");
 						stats.addWin(money.getBet());
 						money.win();
@@ -165,12 +171,12 @@ class Main {
 				}
 
 
-				if(!player.hasBusted()) {
+				if(!user.hasBusted()) {
 					//The dealer hits
 					dealer.takeTurn(deck);
 					//Show the dealers deck
 					System.out.println("Here is the dealer's hand:");
-					System.out.println(dealer.getHand(1));
+					System.out.println(dealer.getHand());
 
 					//Check if dealer busted
 					if (dealer.hasBusted()) {
@@ -179,7 +185,7 @@ class Main {
 						stats.addLoss(money.getBet());
 					} else {
 						//If you deck value is more than the dealers
-						if ((21 - player.getHand(1).getHandValue()) < (21 - dealer.getHand(1).getHandValue())) {
+						if ((21 - user.getHand().getHandValue()) < (21 - dealer.getHand().getHandValue())) {
 							System.out.println("Congratulations, you win!");
 							System.out.println("You win 2x your money back!");
 							money.win();
@@ -187,13 +193,13 @@ class Main {
 							stats.updateStats();
 						}
 						//If you deck value is equal to the dealers
-						if ((21 - player.getHand(1).getHandValue()) == (21 - dealer.getHand(1).getHandValue())) {
+						if ((21 - user.getHand().getHandValue()) == (21 - dealer.getHand().getHandValue())) {
 							System.out.println("It's a push!");
 							System.out.println("You get your money back.");
 							money.push();
 						}
 						//If you deck value is less than the dealers
-						if ((21 - player.getHand(1).getHandValue()) > (21 - dealer.getHand(1).getHandValue())) {
+						if ((21 - user.getHand().getHandValue()) > (21 - dealer.getHand().getHandValue())) {
 							System.out.println("You lose!");
 							stats.addLoss(money.getBet());
 							stats.updateStats();

@@ -2,12 +2,9 @@ package blackjack;
 
 class Dealer extends Player {
 
-Dealer() {
-}
-
 public void showFirstCard(Dealer dealer) {
     System.out.print("The dealer is showing:");
-    Hand hand = dealer.getHand(1);
+    Hand hand = dealer.getHand();
     System.out.println(hand.getCard(1));
 }
 public boolean wantsToHit() {
@@ -32,4 +29,11 @@ public void takeTurn(Deck deck) {
     }
     System.out.println("The dealer stands.");
 }
+
+    public boolean hasFiveCardTrick(int handNum) {
+        Hand[] tempHand = new Hand[]{};
+        tempHand = hand.toArray(tempHand);
+        Hand myHand = tempHand[handNum-1];
+        return(myHand.getHandSize()==5 && myHand.getHandValue()<21);
+    }
 }
