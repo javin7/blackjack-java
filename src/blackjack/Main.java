@@ -17,13 +17,14 @@ class Main {
 		Dealer dealer = new Dealer();
 		Money money = new Money();
 		
-		stats.checkStats();
+
 
 		//Get name
 		System.out.println("Hi! What is your username?");
 		String name = n.nextLine();
 		user.setUsername(name);
 		stats.setPlayerIndex(name);
+		stats.checkStats();
 		System.out.printf("Hello %s, let's play some blackjack!%n%n", name);
 		
 		
@@ -81,7 +82,7 @@ class Main {
 
 			//Show user hand
 			System.out.printf("\nHere is your hand: %s%n%n", user.getHand());
-			System.out.println(user.getHand().getHandValue());
+			//System.out.println(user.getHand().getHandValue());
 
 			dealer.showFirstCard(dealer);
 			//dealer.showHand();
@@ -174,6 +175,11 @@ class Main {
 				if(!user.hasBusted()) {
 					//The dealer hits
 					dealer.takeTurn(deck);
+
+					//Show user hand
+					System.out.println("Here is your hand:");
+					System.out.println(user.getHand());
+
 					//Show the dealers deck
 					System.out.println("Here is the dealer's hand:");
 					System.out.println(dealer.getHand());
