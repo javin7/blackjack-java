@@ -50,13 +50,13 @@ class Hand {
 		    hand.add(deck.drawCard());
 		
 		for (Card card : hand) {
-		    handValue += card.getValue();
+		    this.handValue += card.getValue();
 		    if (card.getValue() == 11) {
-		        aceCounter++;
+				this.aceCounter++;
 		    }
-		    while (aceCounter > 0 && handValue > 21) {
-		        handValue -= 10;
-		        aceCounter--;
+		    while (this.aceCounter > 0 && this.handValue > 21) {
+				this.handValue -= 10;
+				this.aceCounter--;
 		    }
 		}
 	}
@@ -70,8 +70,8 @@ class Hand {
 	    return handValue;
 	}
 
-	public Card getCard(int cardnum) {
-		return hand.get(cardnum - 1);
+	public Card getCard() {
+		return hand.get(0);
 	}
 
 	public String toString(){

@@ -9,7 +9,9 @@ public class Card {
 	Card(int suit, int values) {
 	    this.rankValue = values;
 	    this.suitValue = suit;
-		//System.out.println("rankValue: " + this.getValue() + " suit" + this.getRank());
+		//System.out.print(this.toString());
+		//System.out.print("value: " + this.rankValue);
+		//System.out.println(RANKS[rankValue] + "rankValue: " + this.getValue() + " suit: " + this.getRank());
 	}
 
 	public int getRank() {
@@ -22,7 +24,7 @@ public class Card {
 
 	public int getValue() {
 	    int value;
-	    if (rankValue > 10) {
+	    if (rankValue >  10) {
 	        value = 10;
 	    } else if (rankValue == 1) {
 	        value = 11;

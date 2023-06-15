@@ -1,16 +1,16 @@
 package blackjack;
-
+import java.util.*;
 class Dealer extends Player {
 
 public void showFirstCard(Dealer dealer) {
     System.out.print("The dealer is showing:");
     Hand hand = dealer.getHand();
-    System.out.println(hand.getCard(1));
+    System.out.println(hand.getCard());
 }
 public boolean wantsToHit() {
     Hand[] aHand = new Hand[]{};
     aHand = hand.toArray(aHand);
-    return aHand[0].getHandValue()<17;
+    return aHand[0].getHandValue() < 17;
 }
 
 public void showHand() {

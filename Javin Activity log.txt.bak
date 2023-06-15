@@ -110,7 +110,7 @@ Hand---
 
 Create Stats class
 Stats---
-	checkstats() -> Read stats from file  ->	Stores into variables:
+	checkstats() -> Read database from file  ->	Stores into variables:
 												int wins
 												int loses 
 												double biggestWin
@@ -118,7 +118,7 @@ Stats---
 												double profit
 												double loss
 	
-	updateStats() -> Write stats back into file -> 	Vars:
+	updateStats() -> Write database back into file -> 	Vars:
 													wins
 													loses 
 													biggestWin
