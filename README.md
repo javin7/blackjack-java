@@ -15,7 +15,6 @@ This is a Blackjack game created in Java
 
 ###  Blackjack
  * Create user and dealer object
- * Create input, money, and fileio classes
 
 ### Card
 * Has 2 properties: Rank and Suit
