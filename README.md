@@ -15,6 +15,7 @@ This is a Blackjack game created in Java
 
 ###  Blackjack
  * Create user and dealer object
+ * Create input, money, and fileio classes
 
 ### Card
 * Has 2 properties: Rank and Suit
@@ -63,7 +64,7 @@ This is a Blackjack game created in Java
 * Calculate money after hitting blackjack
 * Using double down and insurance
 
-### Database
+### Stats
 * Stores player profiles using a username system
 * Keeps track of the player index in the file in order to store player data without messing up others.
 * Stores: 
@@ -76,7 +77,6 @@ This is a Blackjack game created in Java
   - profit
   - loss
 * createPlayerProfile(String): Creates a new player profile with all stats set to 0
-* deletePlayerProfile(): Deletes current profile that is logged in
 * checkStats(): updates all stats into the game
 * updateStats(): takes all stats in game and writes them to the appropriate part of the file
 * findPlayerIndex(): find the file index of the current player logged in

@@ -226,61 +226,118 @@ class Database {
 	}
 
 	//Insertion Sort
-	public static void sortFileByLevel(int arr[]) {
+	public static void sortFileByLevel() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			ArrayList<String> names = new ArrayList<String>();
 			ArrayList<String> level = new ArrayList<String>();
-			ArrayList<String> rest = new ArrayList<>();
+			ArrayList<Integer> wins = new ArrayList<>();
+			ArrayList<Integer> loses = new ArrayList<>();
+			ArrayList<Double> biggestWin = new ArrayList<>();
+			ArrayList<Double> biggestLoss = new ArrayList<>();
+			ArrayList<Double> profit = new ArrayList<>();
+			ArrayList<Double> loss = new ArrayList<>();
+
 
 			//Read the username and level into seperate arraylists
 			String nameLine;
+			int size = level.size();
 			while (null != (nameLine = reader.readLine())) {
 				names.add(nameLine);
 				level.add(reader.readLine());
-				rest.add(reader.readLine());
-				rest.add(reader.readLine());
-				rest.add(reader.readLine());
-				rest.add(reader.readLine());
-				rest.add(reader.readLine());
-				rest.add(reader.readLine());
+				wins.add(Integer.parseInt(reader.readLine()));
+				loses.add(Integer.parseInt(reader.readLine()));
+				biggestWin.add(Double.parseDouble(reader.readLine()));
+				biggestLoss.add(Double.parseDouble(reader.readLine()));
+				profit.add(Double.parseDouble(reader.readLine()));
+				loss.add(Double.parseDouble(reader.readLine()));
 			}
 
 			//Turn arraylist into an array
-			String[] nameArr = new String[names.size()];
-			String[] levelArr = new String[level.size()];
+			String[] nameArr = new String[size];
+			String[] levelArr = new String[size];
+			Integer[] winsArr = new Integer[size];
+			Integer[] losesArr = new Integer[size];
+			Double[] biggestWinArr = new Double[size];
+			Double[] biggestLossArr = new Double[size];
+			Double[] profitArr = new Double[size];
+			Double[] lossArr = new Double[size];
+
 			nameArr = names.toArray(nameArr);
 			levelArr = level.toArray(levelArr);
+			winsArr = wins.toArray(winsArr);
+			losesArr = loses.toArray(losesArr);
+			biggestWinArr = biggestWin.toArray(biggestWinArr);
+			biggestLossArr = biggestLoss.toArray(biggestLossArr);
+			profitArr = profit.toArray(profitArr);
+			lossArr = loss.toArray(lossArr);
 
-			int i, j, temp;
-			boolean swapped;
-			for (i = 0; i < n - 1; i++) {
-				swapped = false;
-				for (j = 0; j < n - i - 1; j++) {
-					if (arr[j] > arr[j + 1]) {
+			boolean sorted = false;
+			int temp;
+			double temp2;
+			String temp1;
+			while(!sorted) {
+				sorted = true;
+				for (int i = 0; i < levelArr.length - 1; i++) {
+					if (Integer.parseInt(levelArr[i]) > Integer.parseInt(levelArr[i+1])) {
+						temp1 = nameArr[i];
+						nameArr[i] = nameArr[i+1];
+						nameArr[i+1] = temp1;
 
-						// Swap arr[j] and arr[j+1]
-						temp = arr[j];
-						arr[j] = arr[j + 1];
-						arr[j + 1] = temp;
-						swapped = true;
+						temp = 	Integer.parseInt(levelArr[i]);
+						levelArr[i] = levelArr[i+1];
+						levelArr[i+1] = Integer.toString(temp);
+
+						temp = 	winsArr[i];
+						winsArr[i] = winsArr[i+1];
+						winsArr[i+1] = temp;
+
+						temp = losesArr[i];
+						losesArr[i] = losesArr[i+1];
+						losesArr[i+1] = temp;
+
+						temp2 = biggestWinArr[i];
+						biggestWinArr[i] = biggestWinArr[i+1];
+						biggestWinArr[i+1] = temp2;
+
+						temp2 = biggestLossArr[i];
+						biggestLossArr[i] = biggestLossArr[i+1];
+						biggestLossArr[i+1] = temp2;
+
+						temp2 = profitArr[i];
+						lossArr[i] = lossArr[i+1];
+						lossArr[i+1] = temp2;
+
+						temp2 = lossArr[i];
+						lossArr[i] = lossArr[i+1];
+						lossArr[i+1] = temp2;
+
+						sorted = false;
 					}
 				}
-
-				// If no two elements were
-				// swapped by inner loop, then break
-				if (swapped == false)
-					break;
 			}
+			/*System.out.println(Arrays.toString(nameArr));
+			System.out.println(Arrays.toString(levelArr));
+			System.out.println(Arrays.toString(winsArr));
+			System.out.println(Arrays.toString(losesArr));
+			System.out.println(Arrays.toString(biggestWinArr));
+			System.out.println(Arrays.toString(biggestLossArr));
+			System.out.println(Arrays.toString(profitArr));
+			System.out.println(Arrays.toString(lossArr));*/
 
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
 
-			//BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-
-			//Print out top 5 players
-			System.out.println("\n----------------------------\nThese are the top 5 players!\n---------------------------- ");
-			for (int i = levelArr.length-1; i >= 0 ; i--) {
-				System.out.println(i+1 + ": " + nameArr[i] + " | Level: " + levelArr[i]);
+			for (int i = nameArr.length-1; i >= 0; i--) {
+				writer.write(nameArr[i] + "\n");
+				writer.write(levelArr[i] + "\n");
+				writer.write(winsArr[i] + "\n");
+				writer.write(losesArr[i] + "\n");
+				writer.write(biggestWinArr[i] + "\n");
+				writer.write(biggestLossArr[i] + "\n");
+				writer.write(profitArr[i] + "\n");
+				writer.write(lossArr[i] + "\n");
 			}
+			writer.close();
 		} catch (IOException iox) {
 			System.out.println("File error!");
 		}

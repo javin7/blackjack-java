@@ -17,12 +17,13 @@ class Blackjack {
         System.out.println("Hi! What is your username? (case sensitive)");
         String name = n.nextLine();
         user.setUsername(name);
+        //Database.setPlayerIndex(name);
         if (Database.setPlayerIndex(name)) {
             Input.login();
             Database.setPlayerIndex(name);
         }
-        Database.displayByLevel();
-        //Database.sortFileByLevel();
+        //Database.displayByLevel();
+        Database.sortFileByLevel();
         Database.checkStats();
         System.out.printf("Hello %s, let's play some blackjack!%n%n", name);
 
