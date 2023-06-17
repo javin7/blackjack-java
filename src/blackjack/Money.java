@@ -1,12 +1,16 @@
 package blackjack;
 
+/*
+Money
+Javin Liu
+07/06/23
+A.Y. Jackson Secondary School
+Handles all money calculations and modifies funds appropriately
+*/
+
 public class Money {
 	private static double cash;
 	private static double bet;
-
-	Money() {
-	}
-
 
 	public static void getCashback(int level) {
 		if (level >= 200 && level < 400) {

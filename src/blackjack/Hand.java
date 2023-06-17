@@ -2,8 +2,17 @@ package blackjack;
 
 import java.util.*;
 
+/*
+Hand
+Javin Liu
+07/06/23
+A.Y. Jackson Secondary School
+Hand which stores cards for both dealer and user
+*/
+
 class Hand {
 
+	//Create an arraylist of cards
 	private ArrayList<Card> hand;
 	private int handValue;
 	private int aceCounter;
@@ -12,15 +21,16 @@ class Hand {
 	    hand = new ArrayList<>();
 	    aceCounter = 0;
 	    handValue = 0;
-	    
+
+		//Draw 2 cards when creating a new deck
 	    for (int i = 0; i < 2; i++) {
 	        hand.add(deck.drawCard());
 	    }
-	    
+
+		//Get value of deck
 	    Card[] tempHand = new Card[]{};
 	    tempHand = hand.toArray(tempHand);
 		for (Card card : tempHand) {
-			//Get value of deck
 			handValue += card.getValue();
 			if (card.getValue() == 11) {
 				aceCounter++;
@@ -32,20 +42,7 @@ class Hand {
 		}
 	}
 	
-/*	public boolean hasBlackJack(int handnum) {
-	    Hand[] tempHand = new Hand[] {};
-	    tempHand = hand.toArray(tempHand);
-	    return (tempHand[handnum-1].getHandSize() == 2 && tempHand[handnum-1].getHandValue() == 21);
-	}
-	
-	//hasBusted
-	public boolean hasBusted() {
-	    Hand[] tempHand = new Hand[] {};
-	    tempHand = hand.toArray(tempHand); //Check if hand is over 21
-	    return (tempHand[0].getHandValue() > 21);
-	}	*/
-	
-	//Hit method
+	//Draws a card from the deck and places it into hand
 	public void Hit(Deck deck) {
 		    hand.add(deck.drawCard());
 		
@@ -61,27 +58,19 @@ class Hand {
 		}
 	}
 	
-	//Getters
+	//Return size of current hand
 	public int getHandSize() {
 	    return hand.size();
 	}
 
+	//Return value of current hand
 	public int getHandValue() {
 	    return handValue;
 	}
 
+	//Return the current card
 	public Card getCard() {
 		return hand.get(0);
 	}
 
-	public String toString(){
-	    String hands ="";
-	    Card[] tempHand = new Card[]{};
-	    tempHand = hand.toArray(tempHand);
-	    for(int i=0; i<tempHand.length-1; i++) {
-	        hands = hands + tempHand[i].toString() + ", ";
-	    }
-	    hands = hands + tempHand[tempHand.length-1].toString();
-	    return hands;
-	}   
 }

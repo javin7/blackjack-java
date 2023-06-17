@@ -2,6 +2,14 @@ package blackjack;
 
 import java.util.*;
 
+/*
+Player
+Javin Liu
+07/06/23
+A.Y. Jackson Secondary School
+Abstract class for the creation of a player
+*/
+
 abstract class Player {
 
 	ArrayList<Hand> hand;
@@ -10,22 +18,25 @@ abstract class Player {
 	    hand = new ArrayList<>();
 	}
 
+	//Takes a turn
 	abstract void takeTurn(Deck deck);
-	
-	//hasBusted
+
+	//Returns if hand value is over 21
 	public boolean hasBusted() {
 	    Hand[] tempHand = new Hand[] {};
-	    tempHand = hand.toArray(tempHand); //Check if hand is over 21
+	    tempHand = hand.toArray(tempHand);
 		//System.out.print(Arrays.toString(tempHand));
 	    return (tempHand[0].getHandValue() > 21);
 	}
-	
+
+	//Returns if hand value is 21
 	public boolean hasBlackJack() {
 	    Hand[] tempHand = new Hand[] {};
 	    tempHand = hand.toArray(tempHand);
 	    return (tempHand[0].getHandSize() == 2 && tempHand[0].getHandValue() == 21);
 	}
 
+	//Return the hand
 	public Hand getHand() {
 	    Hand[] tempHand = new Hand[] {};
 	    tempHand = hand.toArray(tempHand);
@@ -40,4 +51,4 @@ abstract class Player {
 	    Hand myHand = new Hand(deck);
 	    hand.add(myHand);
 	}
-	}
+}

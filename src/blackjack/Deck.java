@@ -2,6 +2,14 @@ package blackjack;
 
 import java.util.*;
 
+/*
+Deck
+Javin Liu
+07/06/23
+A.Y. Jackson Secondary School
+Stores cards in an arraylist which can be drawn from, acting as a deck
+*/
+
 class Deck {
 
 	private ArrayList<Card> deck;
@@ -16,7 +24,7 @@ class Deck {
 	    }
 	}
 
-	//Shuffle
+	//Randomly shuffles the deck 200 times
 	public void shuffle() {
 	    Random random = new Random();
 	    Card temp;
@@ -29,6 +37,7 @@ class Deck {
 	    }
 	}
 
+	//Returns a card from the deck and removes it form the deck
 	public Card drawCard() {
 	    return deck.remove(0);
 	}	

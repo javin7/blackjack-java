@@ -2,9 +2,15 @@ package blackjack;
 
 import java.util.*;
 
+/*
+Input
+Javin Liu
+07/06/23
+A.Y. Jackson Secondary School
+Gets input from user and validates data entered
+*/
+
 class Input {
-	Input() {
-	}
 	
 	//Get bet from user
 	public static double getBet(double cash) {
@@ -25,6 +31,7 @@ class Input {
 		return bet;
 	}
 
+	//Login the player
 	public static void login() {
 		Scanner n = new Scanner(System.in);
 		System.out.println("Options:");
@@ -63,17 +70,17 @@ class Input {
 		return hit.equalsIgnoreCase("hit");
 	}
 
-	//Check if answer is valid
+	//Check if answer for yes or no is valid
 	public static boolean isYesOrNo(String answer) {
 		return (answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("no"));
 	}
 
-	//Check if answer is valid
+	//Check if answer for hit or stand is valid
 	public static boolean isHitOrStand(String hit) {
 		return (hit.equalsIgnoreCase("hit") || hit.equalsIgnoreCase("stand"));
 	}
 	
-	//Check if number is numeric
+	//Check if the String is numeric
 	public static boolean isNumber(String str) {
 		try {  
 			Double.parseDouble(str);  

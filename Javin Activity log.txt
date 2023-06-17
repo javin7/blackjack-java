@@ -101,6 +101,7 @@ Player---
 	Check for five card trick -> If the hand size is == 5 and hand value < 21 -> You win //Never even heard of this rule
 		
 Money---
+	Create action methods ->	insurance(); -> cash -= bet/2;
 	
 Input---
 
@@ -282,6 +283,7 @@ If not, print out profit made
 Hand---
 
 Database---
+	Display top 5 players
 
 June 14
 Card---	
@@ -309,6 +311,7 @@ Hand---
 
 Database---
 	Simplified winPercentage() method
+	Create method to sort file by level
 
 June 15
 Card---	
@@ -353,10 +356,10 @@ Player---
 
 		
 Money---
-	Create action methods ->	insurance(); -> cash -= bet/2;
 	
 Input---
-	Replace toLowerCase().equals() to equalsIgnoreCase()
+	
+
 Deck---
 	
 

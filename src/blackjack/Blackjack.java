@@ -2,6 +2,13 @@ package blackjack;
 
 import java.util.Scanner;
 
+/*
+Blackjack
+Javin Liu
+07/06/23
+A.Y. Jackson Secondary School
+Organizes game into one
+*/
 class Blackjack {
 
 
@@ -22,7 +29,6 @@ class Blackjack {
             Input.login();
             Database.setPlayerIndex(name);
         }
-        //Database.displayByLevel();
         Database.sortFileByLevel();
         Database.checkStats();
         System.out.printf("Hello %s, let's play some blackjack!%n%n", name);

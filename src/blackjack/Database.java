@@ -3,8 +3,16 @@ package blackjack;
 import java.io.*;
 import java.util.*;
 
+/*
+Database
+Javin Liu
+07/06/23
+A.Y. Jackson Secondary School
+Handles all the file I/O and data storing, has selection and insertion sort
+*/
+
 class Database {
-	//Variables
+	//Parameters of players
 	private static String file = "stats.txt";
 	private static int playerIndex;
 	private static String username;
@@ -16,7 +24,34 @@ class Database {
 	private static double profit;
 	private static double loss;
 
+	//Accessors
+	public static int getLevel() {
+		return level;
+	}
 
+	public static int getWins() {
+		return wins;
+	}
+
+	public static int getLoses() {
+		return loses;
+	}
+
+	public static double getProfit() {
+		return profit;
+	}
+
+	public static double getLoss() {
+		return loss;
+	}
+
+	public static double getBiggestWin() {
+		return biggestWin;
+	}
+
+	public static double getBiggestLoss() {
+		return biggestLoss;
+	}
 
 	//Get the text line number of the player profile
 	public static boolean setPlayerIndex(String name) {
@@ -28,7 +63,7 @@ class Database {
 				if (currentLine.equals(name)) {
 					playerIndex = index;
 					username = name;
-					System.out.print(index);
+					//System.out.print(index);
 					System.out.println("Profile found, logging in.");
 					return true;
 				} else {
@@ -96,8 +131,8 @@ class Database {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 
-			ArrayList<String> preLines = new ArrayList<String>();
-			ArrayList<String> postLines = new ArrayList<String>();
+			ArrayList<String> preLines = new ArrayList<>();
+			ArrayList<String> postLines = new ArrayList<>();
 			//Get lines before profile lines
 			for (int i = 0; i < playerIndex; i++) {
 				preLines.add(reader.readLine());
@@ -136,12 +171,13 @@ class Database {
 		}
 	}
 
+	//Delete current profile
 	public static void deleteProfile() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 
-			ArrayList<String> preLines = new ArrayList<String>();
-			ArrayList<String> postLines = new ArrayList<String>();
+			ArrayList<String> preLines = new ArrayList<>();
+			ArrayList<String> postLines = new ArrayList<>();
 			//Get lines before profile lines
 			for (int i = 0; i < playerIndex; i++) {
 				preLines.add(reader.readLine());
@@ -176,8 +212,8 @@ class Database {
 	public static void displayByLevel() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
-			ArrayList<String> names = new ArrayList<String>();
-			ArrayList<String> level = new ArrayList<String>();
+			ArrayList<String> names = new ArrayList<>();
+			ArrayList<String> level = new ArrayList<>();
 
 			//Read the username and level into seperate arraylists
 			String nameLine;
@@ -225,12 +261,12 @@ class Database {
 		}
 	}
 
-	//Insertion Sort
+	//Sort and organize players in the file by level
 	public static void sortFileByLevel() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
-			ArrayList<String> names = new ArrayList<String>();
-			ArrayList<String> level = new ArrayList<String>();
+			ArrayList<String> names = new ArrayList<>();
+			ArrayList<String> level = new ArrayList<>();
 			ArrayList<Integer> wins = new ArrayList<>();
 			ArrayList<Integer> loses = new ArrayList<>();
 			ArrayList<Double> biggestWin = new ArrayList<>();
@@ -262,7 +298,6 @@ class Database {
 			Double[] biggestLossArr = new Double[size];
 			Double[] profitArr = new Double[size];
 			Double[] lossArr = new Double[size];
-
 			nameArr = names.toArray(nameArr);
 			levelArr = level.toArray(levelArr);
 			winsArr = wins.toArray(winsArr);
@@ -272,6 +307,7 @@ class Database {
 			profitArr = profit.toArray(profitArr);
 			lossArr = loss.toArray(lossArr);
 
+			//Insertion sort to sort the data by level
 			boolean sorted = false;
 			int temp;
 			double temp2;
@@ -316,14 +352,6 @@ class Database {
 					}
 				}
 			}
-			/*System.out.println(Arrays.toString(nameArr));
-			System.out.println(Arrays.toString(levelArr));
-			System.out.println(Arrays.toString(winsArr));
-			System.out.println(Arrays.toString(losesArr));
-			System.out.println(Arrays.toString(biggestWinArr));
-			System.out.println(Arrays.toString(biggestLossArr));
-			System.out.println(Arrays.toString(profitArr));
-			System.out.println(Arrays.toString(lossArr));*/
 
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file, false));
 
@@ -343,6 +371,7 @@ class Database {
 		}
 	}
 
+	//Display the stats of the current player
 	public static void displayStats() {
 		if (wins != 0 || loses != 0) {
 			System.out.println("-------------STATISTICS-------------");
@@ -369,9 +398,12 @@ class Database {
 		}
 	}
 
+	//Add a level
 	public static void addLevel(double num) {
 		level += (int) num;
 	}
+
+	//Add a win
 	public static void addWin(double cash) {
 		wins++;
 		if (cash > biggestWin) {
@@ -380,6 +412,7 @@ class Database {
 		profit += cash;
 	}
 
+	//Add a loss
 	public static void addLoss(double cash) {
 		loses++;
 		if (cash > biggestLoss) {
@@ -388,42 +421,17 @@ class Database {
 		loss += cash;
 	}
 
+	//Increase total profit
 	public static void increaseProfit(double cash) {
 		profit += cash;
 	}
 
+	//Increase total loss
 	public static void increaseLoss(double cash) {
 		loss += cash;
 	}
 
-	public static int getLevel() {
-		return level;
-	}
-
-	public static int getWins() {
-		return wins;
-	}
-
-	public static int getLoses() {
-		return loses;
-	}
-
-	public static double getProfit() {
-		return profit;
-	}
-
-	public static double getLoss() {
-		return loss;
-	}
-
-	public static double getBiggestWin() {
-		return biggestWin;
-	}
-
-	public static double getBiggestLoss() {
-		return biggestLoss;
-	}
-
+	//Return win percentage of player
 	public static double winPercentage() {
 		return (double) (wins / (wins + loses)) * 100;
 		//double percentage = (double) (wins / (wins + loses)) * 100;
